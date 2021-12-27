@@ -9,7 +9,7 @@ import software.amazon.awssdk.services.pinpoint.model.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PinpointClientTest {
+public class SendSMSMessage {
 
     public static String messageType = "TRANSACTIONAL";
 
@@ -77,8 +77,8 @@ public class PinpointClientTest {
                     "  appId - the Amazon Pinpoint project/application ID to use when you send this message.\n\n" +
                     "  destinationNumber - the recipient's phone number.  For best results, you should specify the phone number in E.164 format (for example, +1-555-555-5654). " +
                     " region - The region where the pinpoint application is setup" +
-                    "accessKey - Access key ID for AWS Environment"+
-                    "access key – Enter your secret access key."+
+                    " accessKey - Access key ID for AWS Environment"+
+                    " access key – Enter your secret access key."+
                     "";
             System.out.println(args.length);
 
@@ -94,6 +94,7 @@ public class PinpointClientTest {
             String region = args[3];
             String accessKey = args [4];
             String accessValue = args [5];
+
             System.out.println("Sending a message" );
 
             PinpointClient pinpoint = PinpointClient.builder()

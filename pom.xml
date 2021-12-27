@@ -50,7 +50,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.pinpoint.PinpointClientTest</mainClass>
+                            <mainClass>com.example.pinpoint.SendSMSMessage</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
