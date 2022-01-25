@@ -65,11 +65,11 @@ public class SendPushNotification {
                     "Where:\n" +
                     "  message - the body of the message to send.\n\n"+
                     "  appId - the Amazon Pinpoint project/application ID to use when you send this message.\n\n" +
-                    "  destinationNumber - the recipient's phone number.  For best results, you should specify the phone number in E.164 format (for example, +1-555-555-5654). " +
                     " region - The region where the pinpoint application is setup" +
                     " accessKey - Access key ID for AWS Environment"+
                     " access key – Enter your secret access key."+
-                    "";
+                    "  Device Endpoint - unique token of the device that you want to send the message to
+            "";
             System.out.println(args.length);
 
             if (args.length != 6) {
