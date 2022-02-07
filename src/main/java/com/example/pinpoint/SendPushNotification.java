@@ -68,8 +68,8 @@ public class SendPushNotification {
                     " region - The region where the pinpoint application is setup" +
                     " accessKey - Access key ID for AWS Environment"+
                     " access key – Enter your secret access key."+
-                    "  Device Endpoint - unique token of the device that you want to send the message to
-            "";
+                    "  Device Endpoint - unique token of the device that you want to send the message to";
+
             System.out.println(args.length);
 
             if (args.length != 6) {

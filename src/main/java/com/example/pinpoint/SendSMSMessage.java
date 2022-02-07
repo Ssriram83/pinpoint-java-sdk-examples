@@ -6,6 +6,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.pinpoint.PinpointClient;
 import software.amazon.awssdk.services.pinpoint.model.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,14 +25,25 @@ public class SendSMSMessage {
                 Map<String, AddressConfiguration> addressMap =
                         new HashMap<String, AddressConfiguration>();
 
+                Map templateAttributes = new HashMap();
+                templateAttributes.put("custom_attribute1", Arrays.asList("custom_attribute_value1"));
+                templateAttributes.put("custom_attribute2", Arrays.asList("custom_attribute_value2"));
+                templateAttributes.put("custom_attribute3", Arrays.asList("custom_attribute_value3"));
+
+                // Anything included here will appear in events as customer_context. Eg: customer_context":"{\"pega_external_id\":\"1\"}"}
+                Map contextMap = new HashMap();
+                contextMap.put("pega_external_id","1");
+
                 AddressConfiguration addConfig = AddressConfiguration.builder()
                         .channelType(ChannelType.SMS)
+                        .context(contextMap)
+                        .substitutions(templateAttributes)
                         .build();
 
                 addressMap.put(destinationNumber, addConfig);
 
                 SMSMessage smsMessage = SMSMessage.builder()
-                        .body(message)
+//                        .body(message)
                         .messageType(messageType)
                         .originationNumber(originationNumber)
                         .senderId(senderId)
@@ -43,9 +55,21 @@ public class SendSMSMessage {
                         .smsMessage(smsMessage)
                         .build();
 
+
+                Template smsTemplate = Template
+                                        .builder()
+                                        .name("sms_template")
+                                        .version("1")
+                                        .build();
+                TemplateConfiguration smsTemplateConfig = TemplateConfiguration
+                        .builder()
+                        .smsTemplate(smsTemplate)
+                        .build();
+
                 MessageRequest msgReq = MessageRequest.builder()
                         .addresses(addressMap)
                         .messageConfiguration(direct)
+                        .templateConfiguration(smsTemplateConfig)
                         .build();
 
                 // create a  SendMessagesRequest object
